@@ -1,0 +1,34 @@
+{
+    "name": "carlosv2/map",
+    "type": "library",
+    "description": "Enhance PHP arrays to allow any offset type",
+    "keywords": ["Array", "Associative", "Map", "Offset", "Types"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Carlos Ortega",
+            "email": "carlosV2.0@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "carlosV2\\Map\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "spec\\carlosV2\\Map\\": "spec/"
+        }
+    },
+    "require": {
+        "php": ">=5.3,<7.1"
+    },
+    "require-dev": {
+        "phpspec/phpspec": "~2.5"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    }
+}
