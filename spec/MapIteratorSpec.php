@@ -8,7 +8,7 @@ class MapIteratorSpec extends ObjectBehavior
 {
     function let()
     {
-        $this->beConstructedWith([null, [], 'abc'], ['value1', 'value2', 'value3']);
+        $this->beConstructedWith(array(null, array(), 'abc'), array('value1', 'value2', 'value3'));
     }
 
     function it_is_an_Iterator()
@@ -24,7 +24,7 @@ class MapIteratorSpec extends ObjectBehavior
         $this->current()->shouldReturn('value1');
         $this->next();
         $this->valid()->shouldReturn(true);
-        $this->key()->shouldReturn([]);
+        $this->key()->shouldReturn(array());
         $this->current()->shouldReturn('value2');
         $this->next();
         $this->valid()->shouldReturn(true);

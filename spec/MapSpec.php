@@ -36,52 +36,52 @@ class MapSpec extends ObjectBehavior
         $this->set('abc', 'value3');
         $this->set($obj1, 'value4');
         $this->set($obj2, 'value5');
-        $this->set([], 'value6');
+        $this->set(array(), 'value6');
 
         $this->get(1)->shouldReturn('value1');
         $this->get(null)->shouldReturn('value2');
         $this->get('abc')->shouldReturn('value3');
         $this->get($obj1)->shouldReturn('value4');
         $this->get($obj2)->shouldReturn('value5');
-        $this->get([])->shouldReturn('value6');
+        $this->get(array())->shouldReturn('value6');
     }
 
     function it_knows_if_it_has_an_offset()
     {
-        $this->set([], 'value');
+        $this->set(array(), 'value');
 
-        $this->has([])->shouldReturn(true);
+        $this->has(array())->shouldReturn(true);
         $this->has(new \stdClass())->shouldReturn(false);
     }
 
     function it_gets_the_value_for_an_offset_with_an_optional_default_value()
     {
-        $this->set([], 'value');
+        $this->set(array(), 'value');
 
-        $this->get([])->shouldReturn('value');
+        $this->get(array())->shouldReturn('value');
         $this->get(new \stdClass())->shouldReturn(null);
         $this->get(new \stdClass(), 'default')->shouldReturn('default');
     }
 
     function it_is_ArrayAccess_compliant()
     {
-        $this->offsetSet([], 'value');
+        $this->offsetSet(array(), 'value');
 
-        $this->offsetExists([])->shouldReturn(true);
+        $this->offsetExists(array())->shouldReturn(true);
         $this->offsetExists(new \stdClass())->shouldReturn(false);
 
-        $this->offsetGet([])->shouldReturn('value');
+        $this->offsetGet(array())->shouldReturn('value');
         $this->offsetGet(new \stdClass())->shouldReturn(null);
 
-        $this->offsetUnset([]);
-        $this->offsetExists([])->shouldReturn(false);
+        $this->offsetUnset(array());
+        $this->offsetExists(array())->shouldReturn(false);
     }
 
     function it_is_Countable_compliant()
     {
         $this->set(null, 'value1');
         $this->set('abc', 'value2');
-        $this->set([], 'value3');
+        $this->set(array(), 'value3');
 
         $this->count()->shouldReturn(3);
     }
@@ -89,7 +89,7 @@ class MapSpec extends ObjectBehavior
     function it_is_IteratorAggregate_compliant()
     {
         $this->set(null, 'value1');
-        $this->set([], 'value2');
+        $this->set(array(), 'value2');
 
         $iterator = $this->getIterator();
         $iterator->shouldBeAnInstanceOf(MapIterator::class);
@@ -100,7 +100,7 @@ class MapSpec extends ObjectBehavior
         $iterator->current()->shouldReturn('value1');
         $iterator->next();
         $iterator->valid()->shouldReturn(true);
-        $iterator->key()->shouldReturn([]);
+        $iterator->key()->shouldReturn(array());
         $iterator->current()->shouldReturn('value2');
         $iterator->next();
         $iterator->valid()->shouldReturn(false);
@@ -109,30 +109,30 @@ class MapSpec extends ObjectBehavior
     function it_returns_the_array_of_keys()
     {
         $this->set(null, 'value1');
-        $this->set([], 'value2');
+        $this->set(array(), 'value2');
 
-        $this->keys()->shouldReturn([null, []]);
+        $this->keys()->shouldReturn(array(null, array()));
     }
 
     function it_returns_the_array_of_values()
     {
         $this->set(null, 'value1');
-        $this->set([], 'value2');
+        $this->set(array(), 'value2');
 
-        $this->values()->shouldReturn(['value1', 'value2']);
+        $this->values()->shouldReturn(array('value1', 'value2'));
     }
 
     function it_allows_to_apply_a_callable_to_each_value()
     {
         $this->set(null, 'value1');
-        $this->set([], 'value2');
+        $this->set(array(), 'value2');
 
         $map = $this->map(function ($value, $key) {
             return sprintf('%s_%s', json_encode($key), $value);
         });
         $map->shouldBeAnInstanceOf(Map::class);
 
-        $map->keys()->shouldReturn([null, []]);
-        $map->values()->shouldReturn(['null_value1', '[]_value2']);
+        $map->keys()->shouldReturn(array(null, array()));
+        $map->values()->shouldReturn(array('null_value1', '[]_value2'));
     }
 }

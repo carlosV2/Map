@@ -46,7 +46,7 @@ class Map implements \ArrayAccess, \Countable, \IteratorAggregate
      */
     public function set($offset, $value)
     {
-        $this->data[$this->getUniqueIdentifier($offset)] = ['offset' => $offset, 'value' => $value];
+        $this->data[$this->getUniqueIdentifier($offset)] = array('offset' => $offset, 'value' => $value);
     }
 
     /**
