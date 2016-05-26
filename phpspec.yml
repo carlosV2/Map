@@ -1,0 +1,4 @@
+suites:
+  validator_suite:
+    namespace: carlosV2\Map
+    psr4_prefix: carlosV2\Map
