@@ -2,6 +2,9 @@
 
 namespace carlosV2\Map;
 
+/**
+ * @internal
+ */
 class MapIterator implements \Iterator
 {
     /**
