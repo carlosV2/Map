@@ -28,12 +28,17 @@ $map[$foo] = 'bar';
 You can use any type you want as key. If you want, you can even mix them:
 ```
 $map = new Map();
+
 $map[null] = 'null';
 $map[[]] = 'array';
 $map['string'] = 'string';
 $map[1] = 'integer';
 $map[true] = 'boolean';
 $map[new \stdClass()] = 'object';
+
+foreach ($map as $key => $value) {
+    var_dump($key, $value);
+}
 ```
 
 ### API
@@ -82,6 +87,51 @@ Assigns the given value to the given key:
 $map = new Map();
 
 $map->set($key, $value); // Equivalent to: $map[$key] = $value;
+```
+
+keys:
+-----
+
+Returns the array of keys for that instance:
+```
+$map = new Map();
+
+$map[null] = 'null';
+$map[[]] = 'array';
+$map[true] = 'boolean';
+
+$map->keys(); // [null, [], true]
+```
+
+values:
+-------
+
+Returns the array of values for that instance:
+```
+$map = new Map();
+
+$map[null] = 'null';
+$map[[]] = 'array';
+$map[true] = 'boolean';
+
+$map->values(); // ['null', 'array', 'boolean']
+```
+
+map:
+----
+
+Similar to `array_map` but it returns another Map instance instead. The callable function may have the key as a
+second argument:
+```
+$map = new Map();
+
+$map[null] = 'null';
+$map[[]] = 'array';
+$map[true] = 'boolean';
+
+$newMap = $map->map(function ($value, $key) { return json_encode($key) . '_' . $value; });
+$newMap->keys(); // [null, [], true]
+$newMap->values(); // ['null_null', '[]_array', 'true_boolean']
 ```
 
 ### Interfaces
