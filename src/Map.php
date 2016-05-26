@@ -128,7 +128,7 @@ class Map implements \ArrayAccess, \Countable, \IteratorAggregate
      *
      * @return Map
      */
-    public function map(callable $fn) {
+    public function map($fn) {
         $map = new Map();
         foreach ($this->data as $data) {
             $map->set($data['offset'], $fn($data['value'], $data['offset']));
