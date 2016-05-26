@@ -2,25 +2,23 @@
 
 namespace spec\carlosV2\Map;
 
-use carlosV2\Map\Map;
-use carlosV2\Map\MapIterator;
 use PhpSpec\ObjectBehavior;
 
 class MapSpec extends ObjectBehavior
 {
     function it_is_an_ArrayAccess()
     {
-        $this->shouldHaveType(\ArrayAccess::class);
+        $this->shouldHaveType('\ArrayAccess');
     }
 
     function it_is_a_Countable()
     {
-        $this->shouldHaveType(\Countable::class);
+        $this->shouldHaveType('\Countable');
     }
 
     function it_is_an_IteratorAggregate()
     {
-        $this->shouldHaveType(\IteratorAggregate::class);
+        $this->shouldHaveType('\IteratorAggregate');
     }
 
     function it_stores_values_under_any_offset_type()
@@ -92,7 +90,7 @@ class MapSpec extends ObjectBehavior
         $this->set(array(), 'value2');
 
         $iterator = $this->getIterator();
-        $iterator->shouldBeAnInstanceOf(MapIterator::class);
+        $iterator->shouldBeAnInstanceOf('carlosV2\Map\MapIterator');
 
         $iterator->rewind();
         $iterator->valid()->shouldReturn(true);
@@ -130,7 +128,7 @@ class MapSpec extends ObjectBehavior
         $map = $this->map(function ($value, $key) {
             return sprintf('%s_%s', json_encode($key), $value);
         });
-        $map->shouldBeAnInstanceOf(Map::class);
+        $map->shouldBeAnInstanceOf('carlosV2\Map\Map');
 
         $map->keys()->shouldReturn(array(null, array()));
         $map->values()->shouldReturn(array('null_value1', '[]_value2'));

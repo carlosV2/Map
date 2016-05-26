@@ -13,7 +13,7 @@ class MapIteratorSpec extends ObjectBehavior
 
     function it_is_an_Iterator()
     {
-        $this->shouldHaveType(\Iterator::class);
+        $this->shouldHaveType('\Iterator');
     }
 
     function it_iterates_the_keys_and_values()
